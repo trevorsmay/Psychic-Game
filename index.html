@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Psychic Game</title>
+  
+</head>
+
+<body>
+    <h1>The Psychic Game</h1>
+<div>
+    <p id="directions-text">Guess what letter I am thinking...</p>
+    <p id="wins-text">Wins:</p>
+    <p id="losses-text">Losses:</p>
+    <p id="userguess-text">User's Guess:</p>
+    <p id="numleft-text">Guesses Remaining:</p>
+</div>
+
+<script type="text/javascript">
+
+// array of guesses.
+
+var letters = "abcdefghijklmnopqrstuvwxyz"
+// variables for loses, wins, guesses, number of guesses left.
+var wins = 0;
+var losses = 0;
+var guessArray = [];
+var attempts = 10;
+
+
+
+var computerGuess = letters[Math.floor(Math.random() * letters.length)];
+
+function compGuess() {
+    computerGuess = letters[Math.floor(Math.random() * letters.length)];
+}
+
+
+
+
+document.onkeyup = function (event) {
+var userGuess = event.key;
+
+if (userGuess === letters) {
+    won++;
+    attempts = 10;
+    guessArray=[];
+}
+
+compGuess();
+if (userGuess!== letters) {
+    attempts--;
+}
+ 
+if (attempts === 0) {
+    losses++;
+    attempts = 10;
+    guessArray=[];
+}
+
+if (guessArray.indexOf(userGuess)>= 0) {
+
+} else {
+    guessArray.push(userGuess);
+    document.getElementById("userguess-text").innerHTML = "User's Guess: " +guessArray;
+}
+
+
+  
+
+    document.getElementById("wins-text").innerHTML = "Wins: " + wins;
+    document.getElementById("losses-text").innerHTML = "Losses: " + losses;
+    document.getElementById("numleft-text").innerHTML = "Attempts: " + attempts;
+ 
+    };
+
+
+
+</script>
+
+</body>
+
+</html>
